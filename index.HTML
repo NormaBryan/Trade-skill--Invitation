@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trade Academy Ireland — Try the Trade Before You Train</title>
+<meta name="description" content="Explore electrical, plumbing and welding in beginner-friendly 90-minute trade taster workshops in Ireland.">
+
+<style>
+:root {
+  --bg:#020a18;
+  --surface:#0a1935;
+  --border:#183655;
+  --text:#d0e0f0;
+  --bright:#e8f0ff;
+  --dim:#90a8c6;
+  --blue:#00aaff;
+  --cyan:#00e5ff;
+  --green:#00ff88;
+}
+html.light {
+  --bg:#f3f8ff;
+  --surface:#ffffff;
+  --border:#c9d9eb;
+  --text:#29435f;
+  --bright:#0b2240;
+  --dim:#526b83;
+  --blue:#006dc8;
+  --cyan:#007caa;
+  --green:#087b52;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.65 Arial,sans-serif;
+}
+a { color:inherit; text-decoration:none; }
+button { font:inherit; cursor:pointer; }
+button:focus-visible,a:focus-visible,input:focus-visible {
+  outline:3px solid #ffaa00;
+  outline-offset:3px;
+}
+.container {
+  max-width:1000px;
+  margin:auto;
+  padding:0 22px;
+}
+header {
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+nav {
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.logo { font-weight:900; font-size:20px; color:var(--bright); }
+.logo span { color:var(--cyan); }
+.nav-actions { display:flex; align-items:center; gap:12px; }
+.btn {
+  display:inline-block;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(120deg,var(--blue),var(--cyan));
+  color:#00152c;
+  padding:13px 20px;
+  font-weight:800;
+  text-align:center;
+}
+.btn.secondary {
+  background:transparent;
+  color:var(--bright);
+  border:1px solid var(--border);
+}
+.btn:disabled { opacity:.4; cursor:not-allowed; }
+section { padding:70px 0; }
+.hero {
+  background:radial-gradient(ellipse at top right,#073968,var(--bg) 65%);
+  padding:95px 0;
+}
+.tag {
+  color:var(--green);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:bold;
+}
+h1,h2,h3 { color:var(--bright); line-height:1.2; }
+h1 {
+  font-size:clamp(40px,7vw,72px);
+  letter-spacing:-2px;
+  max-width:800px;
+}
+h1 span { color:var(--cyan); }
+h2 { font-size:clamp(28px,4vw,42px); }
+.lead { font-size:19px; max-width:650px; }
+.muted { color:var(--dim); }
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin:28px 0; }
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:28px;
+}
+.card,.quiz,.timeline {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+}
+.card { display:flex; flex-direction:column; }
+.emoji { font-size:48px; }
+.card h3 { font-size:23px; margin-bottom:6px; }
+.card p { flex:1; }
+.price { font-size:28px; font-weight:900; color:var(--bright); }
+.price small { font-size:12px; color:var(--dim); }
+.card .btn { margin-top:18px; }
+.timeline-item {
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:15px;
+  padding:18px 0;
+  border-bottom:1px solid var(--border);
+}
+.timeline-item:last-child { border:0; }
+.time { color:var(--cyan); font-weight:bold; }
+.quiz { max-width:760px; margin:25px auto 0; }
+.quiz-head { display:flex; justify-content:space-between; gap:10px; }
+.progress { display:flex; gap:6px; margin:20px 0; }
+.progress span {
+  flex:1;
+  height:6px;
+  border-radius:5px;
+  background:var(--border);
+}
+.progress span.active { background:var(--blue); }
+.option {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  margin:10px 0;
+  cursor:pointer;
+}
+.option:has(input:checked) { border-color:var(--cyan); }
+.option input { accent-color:var(--blue); }
+.quiz-buttons {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:22px;
+}
+.hidden { display:none; }
+.result {
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
+}
+.result strong { color:var(--bright); }
+details {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  margin:12px 0;
+  padding:18px;
+}
+summary { cursor:pointer; color:var(--bright); font-weight:bold; }
+footer {
+  border-top:1px solid var(--border);
+  padding:35px 0;
+  color:var(--dim);
+  font-size:13px;
+}
+@media(max-width:700px) {
+  .cards { grid-template-columns:1fr; }
+  .hero { padding:65px 0; }
+  section { padding:48px 0; }
+  .timeline-item { grid-template-columns:85px 1fr; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <nav class="container">
+    <a href="#home" class="logo">⚡ TRADE <span>ACADEMY</span></a>
+    <div class="nav-actions">
+      <button class="btn secondary" id="themeBtn" type="button">☀︎ Theme</button>
+      <a href="#quiz" class="btn">Find your skill →</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container">
+    <div class="tag">Real skills · Real experience · Real possibilities</div>
+    <h1>Your next career could start in <span>90 minutes.</span></h1>
+    <p class="lead">Try the trade before you train.</p>
+    <p class="lead">
+      Curious about electrical work, plumbing or welding?
+      Discover what a practical career could feel like in a
+      beginner-friendly evening workshop led by a tradesperson.
+    </p>
+    <div class="actions">
+      <a href="#quiz" class="btn">Find your next skill →</a>
+      <a href="#workshops" class="btn secondary">Explore workshops</a>
+    </div>
+    <p class="muted">⏱ 90 minutes · Proposed prices from €39 · No experience needed</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tag">Why Trade Academy?</div>
+    <h2>Don't guess your next move. Give it a go.</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="emoji">👐</div>
+        <h3>Try it for real</h3>
+        <p>Take part in a supervised practical activity instead of simply watching a presentation.</p>
+      </div>
+      <div class="card">
+        <div class="emoji">👷</div>
+        <h3>Meet a tradesperson</h3>
+        <p>Find out what the working day, training and career opportunities are actually like.</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🧭</div>
+        <h3>Find your direction</h3>
+        <p>Discover what interests you before committing to longer training.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="workshops">
+  <div class="container">
+    <div class="tag">Three trades to explore</div>
+    <h2>One evening. A new possibility.</h2>
+    <p class="muted">Proposed 90-minute introductory workshops.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="emoji">⚡</div>
+        <h3>Spark Your Future</h3>
+        <strong>Electrical & Solar Technology</strong>
+        <p>Build a safe low-voltage circuit and discover how electrical and solar systems work.</p>
+        <div class="price">€39 <small>proposed</small></div>
+        <a class="btn" href="#quiz">Explore electrical →</a>
+      </article>
+      <article class="card">
+        <div class="emoji">🔧</div>
+        <h3>Build the Flow</h3>
+        <strong>Plumbing & Heat Pumps</strong>
+        <p>Assemble a simple pipe connection and explore modern heating and heat-pump systems.</p>
+        <div class="price">€39 <small>proposed</small></div>
+        <a class="btn" href="#quiz">Explore plumbing →</a>
+      </article>
+      <article class="card">
+        <div class="emoji">🛠️</div>
+        <h3>Make Your Mark</h3>
+        <strong>Welding & Metal Fabrication</strong>
+        <p>Explore metalworking and supervised welding activities, subject to suitable facilities and safety approval.</p>
+        <div class="price">€59 <small>proposed</small></div>
+        <a class="btn" href="#quiz">Explore welding →</a>
+      </article>
+    </div>
+    <p class="muted">Workshop prices and activities are proposals. Dates and venues are not yet confirmed.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tag">The experience</div>
+    <h2>What happens in 90 minutes?</h2>
+    <div class="timeline">
+      <div class="timeline-item"><div class="time">0–10 min</div><div><strong>Meet your tradesperson</strong><p>Welcome and safety briefing.</p></div></div>
+      <div class="timeline-item"><div class="time">10–25 min</div><div><strong>See it in action</strong><p>Watch a practical demonstration.</p></div></div>
+      <div class="timeline-item"><div class="time">25–65 min</div><div><strong>Your turn</strong><p>Try a supervised beginner-friendly task.</p></div></div>
+      <div class="timeline-item"><div class="time">65–80 min</div><div><strong>Ask the real questions</strong><p>Explore apprenticeships and working life.</p></div></div>
+      <div class="timeline-item"><div class="time">80–90 min</div><div><strong>Choose your next step</strong><p>Discover possible training pathways.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skillfinder">
+  <div class="container">
+    <div class="tag">Personalised skill finder</div>
+    <h2>Find your next skill.</h2>
+    <p>Five questions. Three personalised recommendations. No email required.</p>
+    <div class="quiz" id="quiz">
+      <div id="questionView">
+        <div class="quiz-head">
+          <strong>YOUR SKILL FINDER</strong>
+          <span id="count">Question 1 of 5</span>
+        </div>
+        <div class="progress" id="progress"></div>
+        <h3 id="questionTitle"></h3>
+        <div id="answers" role="radiogroup" aria-labelledby="questionTitle"></div>
+        <div class="quiz-buttons">
+          <button class="btn secondary" id="backBtn">← Back</button>
+          <button class="btn" id="nextBtn" disabled>Next →</button>
+        </div>
+      </div>
+      <div id="resultView" class="hidden" aria-live="polite">
+        <div class="tag">Your Trade Academy match</div>
+        <h2 id="resultTitle"></h2>
+        <p id="resultWhy"></p>
+        <h3>Your recommended workshops</h3>
+        <div id="ranking"></div>
+        <div class="actions">
+          <a href="#workshops" class="btn">Explore workshops →</a>
+          <button id="restartBtn" class="btn secondary">Start again</button>
+        </div>
+        <p class="muted">Recommendations reflect your interests, not a formal career assessment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tag">Frequently asked questions</div>
+    <h2>Good to know.</h2>
+    <details><summary>Do I need experience?</summary><p>No. These proposed workshops are designed for beginners.</p></details>
+    <details><summary>Will I receive a qualification?</summary><p>No. A 90-minute taster is a career exploration experience, not a qualification or apprenticeship.</p></details>
+    <details><summary>What should I wear?</summary><p>Requirements depend on the trade and venue. Safety and PPE instructions will be confirmed in advance.</p></details>
+    <details><summary>When and where are the workshops?</summary><p>Dates and locations have not yet been confirmed.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <strong>⚡ TRADE ACADEMY IRELAND</strong>
+    <p>Try the trade before you train.</p>
+    <p>Concept website · Proposed workshops · No bookings currently available.</p>
+  </div>
+</footer>
+
+<script>
+const themeBtn=document.getElementById("themeBtn");
+themeBtn.addEventListener("click",()=>{
+  document.documentElement.classList.toggle("light");
+});
+
+const trades=[
+  {name:"Spark Your Future",type:"Electrical & Solar",price:"€39",
+   title:"The Energy Innovator",
+   why:"You enjoy technology, electrical systems and renewable energy."},
+  {name:"Build the Flow",type:"Plumbing & Heat Pumps",price:"€39",
+   title:"The Practical Problem Solver",
+   why:"You enjoy practical problem-solving and working with home systems."},
+  {name:"Make Your Mark",type:"Welding & Fabrication",price:"€59",
+   title:"The Hands-On Maker",
+   why:"You enjoy creating things and working with tools and materials."}
+];
+
+const questions=[
+  {q:"What attracts you most?",a:[
+    "Understanding electricity and technology",
+    "Fixing practical problems around homes",
+    "Making something with tools and metal"]},
+  {q:"Which activity sounds most satisfying?",a:[
+    "Getting a circuit to work",
+    "Connecting and testing a pipe",
+    "Creating a strong metal joint"]},
+  {q:"Where would you prefer to work?",a:[
+    "Electrical or renewable-energy installations",
+    "Homes and heating systems",
+    "A fabrication or engineering workshop"]},
+  {q:"What would you most like to learn?",a:[
+    "How solar and electrical systems work",
+    "How heat pumps and plumbing work",
+    "How welding and fabrication work"]},
+  {q:"What matters most in a future career?",a:[
+    "Working with changing technology",
+    "Solving essential everyday problems",
+    "Producing something tangible with my hands"]}
+];
+
+let step=0;
+let choices=Array(5).fill(null);
+const get=id=>document.getElementById(id);
+
+function renderQuestion(){
+  get("questionView").classList.remove("hidden");
+  get("resultView").classList.add("hidden");
+  get("count").textContent=`Question ${step+1} of 5`;
+  get("progress").innerHTML=questions.map((_,i)=>
+    `<span class="${i<=step?"active":""}"></span>`
+  ).join("");
+  get("questionTitle").textContent=questions[step].q;
+  get("answers").replaceChildren();
+
+  questions[step].a.forEach((answer,i)=>{
+    const label=document.createElement("label");
+    label.className="option";
+    const input=document.createElement("input");
+    input.type="radio";
+    input.name="answer";
+    input.value=i;
+    input.checked=choices[step]===i;
+    input.addEventListener("change",()=>{
+      choices[step]=i;
+      get("nextBtn").disabled=false;
+    });
+    label.append(input,document.createTextNode(answer));
+    get("answers").append(label);
+  });
+
+  get("backBtn").disabled=step===0;
+  get("nextBtn").disabled=choices[step]===null;
+  get("nextBtn").textContent=step===4?"See my results →":"Next →";
+}
+
+function showResults(){
+  const scores=[0,0,0];
+  choices.forEach((answer,i)=>{
+    scores[answer]+=i===0?2:1;
+  });
+  const ranked=[0,1,2].sort((a,b)=>scores[b]-scores[a]||a-b);
+  const best=trades[ranked[0]];
+
+  get("questionView").classList.add("hidden");
+  get("resultView").classList.remove("hidden");
+  get("resultTitle").textContent=best.title;
+  get("resultWhy").textContent=best.why;
+  get("ranking").replaceChildren();
+
+  ranked.forEach((id,i)=>{
+    const trade=trades[id];
+    const row=document.createElement("div");
+    row.className="result";
+    const name=document.createElement("div");
+    const strong=document.createElement("strong");
+    strong.textContent=`${i+1}. ${trade.name}`;
+    const description=document.createElement("div");
+    description.className="muted";
+    description.textContent=trade.type;
+    name.append(strong,description);
+    const price=document.createElement("strong");
+    price.textContent=trade.price;
+    row.append(name,price);
+    get("ranking").append(row);
+  });
+}
+
+get("nextBtn").addEventListener("click",()=>{
+  if(choices[step]===null)return;
+  if(step<4){step++;renderQuestion();}
+  else showResults();
+});
+
+get("backBtn").addEventListener("click",()=>{
+  if(step>0){step--;renderQuestion();}
+});
+
+get("restartBtn").addEventListener("click",()=>{
+  step=0;
+  choices.fill(null);
+  renderQuestion();
+});
+
+renderQuestion();
+</script>
+</body>
+</html>
